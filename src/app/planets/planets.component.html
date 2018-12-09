@@ -10,10 +10,12 @@
         </li>
     </ul>
 
+    <!--Pesquisa do planeta-->
     <form  class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" (input)="getPesquisa($event)"
       [value]="termo" placeholder="Digite o planeta" aria-label="Search">
 
+      <!--Listagem do planeta-->
       <ul *ngIf="termo != ''" class="list-group" style="position:absolute; z-index: 999; top: 10vh;">  
         <li class="list-group-item" *ngFor="let perquisas of perquisa; let i = index">
             <a routerLink="/planets" (click)="onDetalhe(template,perquisas)">

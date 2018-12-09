@@ -10,10 +10,12 @@
         </li>
     </ul>
 
+    <!--Pesquisa da veículo-->
     <form  class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" (input)="getPesquisa($event)"
       [value]="termo" placeholder="Digite o veículo" aria-label="Search">
 
+      <!--Listagem do veículo-->
       <ul *ngIf="termo != ''" class="list-group" style="position:absolute; z-index: 999; top: 10vh;">  
         <li class="list-group-item" *ngFor="let perquisas of perquisa; let i = index">
             <a routerLink="/vehicles" (click)="onDetalhe(template,perquisas)">

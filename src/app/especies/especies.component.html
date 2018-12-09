@@ -1,0 +1,110 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+  <a class="navbar-brand" href="home">HOME</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item " routerLinkActive="active">
+      </li>
+  </ul>
+    
+  <form  class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" (input)="getPesquisa($event)"
+    [value]="termo" placeholder="Digite o nome da raça" aria-label="Search">
+
+    <ul *ngIf="termo != ''" class="list-group" style="position:absolute; z-index: 999; top: 10vh;">  
+      <li class="list-group-item" *ngFor="let perquisas of perquisa; let i = index">
+          <a routerLink="/especies" (click)="onDetalhe(template,perquisas)">
+          {{ perquisas.name }}
+          </a>
+        </li>
+    </ul>
+  </form>
+  </div>
+</nav>
+
+<span >
+    <h3 class="table-dark center p-2">LISTA DE RAÇAS</h3>  
+</span>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Classificação</th>
+      <th scope="col">Designação</th>
+      <th scope="col">Detalhes</th>
+    </tr>
+  </thead>
+  <tbody class="table-dark">
+    <tr *ngFor="let especies of especie; let i = index ">
+      <th scope="row">{{i+1}}</th>
+      <td>
+        {{especies.name}}
+      </td>
+      <td>{{especies.classification}}</td>
+      <td>{{especies.designation}}</td>
+      <td style="cursor:pointer;" (click)="onDetalhe( template ,especies)"> <i class="fa fa-search fa-2x"></i></td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{especieDetalhe.name}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class=" center table" *ngIf="especieDetalhe">
+      <tbody>
+        <tr>
+          <td>Classificação: {{especieDetalhe.classification}}</td>
+        </tr>
+        <tr>
+          <td>Designação: {{especieDetalhe.designation}}</td>
+        </tr>
+        <tr>
+          <td>Altura: {{especieDetalhe.average_height}}</td>
+        </tr>
+        <tr>
+          <td>Tempo de Vida: {{especieDetalhe.average_lifespan}}</td>
+        </tr>
+        <tr>
+          <td>Olhos: {{especieDetalhe.eye_colors}}</td>
+        </tr>
+        <tr>
+          <td>Cabelos: {{especieDetalhe.hair_colors}}</td>  
+        </tr>
+        <tr>
+          <td>Cor da pele: {{especieDetalhe.skin_colors}}</td>
+        </tr>
+        <tr>
+          <td>Idioma: {{especieDetalhe.language}}</td>  
+        </tr>
+        <tr>
+          <td>Planeta: {{especieDetalhe.homeworld}}</td> 
+        </tr>
+        <tr>
+          <td>Pessoas: {{especieDetalhe.people}}</td>
+        </tr>
+        <tr>
+          <td>Filmes: {{especieDetalhe.films}}</td>
+        </tr>
+        <tr>
+          <td>Url: {{especieDetalhe.url}}</td>
+        </tr>
+        <tr>
+          <td>Data de Criação: {{especieDetalhe.created}}</td>
+        </tr>
+        <tr>
+          <td>Data de Edição: {{especieDetalhe.edited}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>

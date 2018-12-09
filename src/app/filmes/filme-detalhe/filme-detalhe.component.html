@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+    <a class="navbar-brand" href="filmes"><i class="fa fa-reply" aria-hidden="true"></i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item " routerLinkActive="active">
+          A força está dentro de você!
+        </li>
+    </ul>
+
+  </div>
+</nav>
+
+
+
+<table class=" center table text-white table-dark" *ngIf="filme">
+  <tbody>
+    <tr>
+      <td><h1>{{filme.title}}</h1></td>
+    </tr>
+    <tr>
+      <td>Episódio: {{filme.episode_id}}</td>
+    </tr>
+    <tr>
+      <td>Parágrafos de Abertura: {{filme.opening_crawl}}</td>
+    </tr>
+    <tr>
+      <td>Diretor: {{filme.director }}</td>
+    </tr>
+    <tr>
+      <td>Produtor: {{filme.producer}}</td>
+    </tr>
+    <tr>
+      <td>Data de Lançamento: {{filme.release_date}}</td>
+    </tr>
+    <tr>
+      <td>Espécie: {{filme.species}}</td>  
+    </tr>
+    <tr *ngFor= "let starships of filme.starships; let i = index">  
+        <td>Nave Espacial {{i +1}} : {{starships}}</td>
+    </tr>
+    <tr *ngFor= "let vehicles of filme.vehicles; let i = index">  
+        <td>Veículo {{i +1}} : {{vehicles}}</td>
+    </tr>
+    <tr *ngFor= "let characters of filme.characters; let i = index">  
+        <td>Recurso {{i +1}} : {{characters}}</td>
+    </tr>
+    <tr *ngFor= "let planets of filme.planets; let i = index">  
+        <td>Planeta {{i +1}} : {{planets}}</td>
+    </tr>
+    <tr>
+      <td>Url: {{filme.url}}</td>
+    </tr>
+    <tr>
+      <td>Data de Criação: {{filme.created}}</td>
+    </tr>
+    <tr>
+      <td>Data de Edição: {{filme.created}}</td>
+    </tr>
+  </tbody>
+</table>

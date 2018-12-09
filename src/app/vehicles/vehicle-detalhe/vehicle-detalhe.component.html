@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<table class=" center table" *ngIf="vehicle">
+  <tbody>
+    <tr>
+      <td >Nome: {{vehicle.name}}</td>
+    </tr>
+    <tr>
+      <td>Modelo: {{vehicle.model}}</td>
+    </tr>
+    <tr>
+      <td>Classe: {{vehicle.vehicle_class}}</td>
+    </tr>
+    <tr>
+      <td>Fabricante: {{vehicle.manufacturer}}</td>
+    </tr>
+    <tr>
+      <td>Comprimento: {{vehicle.length}}</td>
+    </tr>
+    <tr>
+      <td>Créditos Galácticos: {{vehicle.cost_in_credits}}</td>
+    </tr>
+    <tr>
+      <td>Pilotos: {{vehicle.crew}}</td>  
+    </tr>
+    <tr>
+      <td>Passageiros: {{vehicle.passengers}}</td>
+    </tr>
+    <tr>
+      <td>Velocidade Máxima: {{vehicle.max_atmosphering_speed}}</td>  
+    </tr>
+    <tr>
+      <td>Capacidade: {{vehicle.cargo_capacity}}</td>
+    </tr>
+    <tr>
+      <td>Consumo: {{vehicle.consumables}}</td>
+    </tr>
+    <tr>
+      <td>Filmes: {{vehicle.films}}</td>
+    </tr>
+    <tr>
+      <td>Url People: {{vehicle.pilots}}</td>
+    </tr>
+    <tr>
+      <td>Url: {{vehicle.url}}</td>
+    </tr>
+    <tr>
+      <td>Data de Criação: {{vehicle.created}}</td>
+    </tr>
+    <tr>
+      <td>Data de Edição: {{vehicle.edited}}</td>
+    </tr>
+    
+  </tbody>
+</table>

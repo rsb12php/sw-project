@@ -1,0 +1,118 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+    <a class="navbar-brand" href="home">HOME</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item " routerLinkActive="active">
+        </li>
+    </ul>
+
+    <form  class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" (input)="getPesquisa($event)"
+      [value]="termo" placeholder="Digite o veículo" aria-label="Search">
+
+      <ul *ngIf="termo != ''" class="list-group" style="position:absolute; z-index: 999; top: 10vh;">  
+        <li class="list-group-item" *ngFor="let perquisas of perquisa; let i = index">
+            <a routerLink="/vehicles" (click)="onDetalhe(template,perquisas)">
+            {{ perquisas.name }}
+            </a>
+          </li>
+      </ul>
+
+    </form>
+
+    
+
+  </div>
+</nav>
+
+<span >
+ <h3 class="table-dark center p-2">LISTA DE VEÍCULOS</h3>  
+</span>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Modelo</th>
+      <th scope="col">Passageiro</th>
+      <th scope="col">Detalhes</th>
+    </tr>
+  </thead>
+  <tbody class="table-dark">
+    <tr *ngFor="let vehicles of vehicle; let i = index ">
+      <th scope="row">{{i+1}}</th>
+      <td>
+        {{vehicles.name}}
+      </td>
+      <td>{{vehicles.model}}</td>
+      <td>{{vehicles.passengers}}</td>
+      <td style="cursor:pointer" (click)="onDetalhe(template, vehicles)"> <i class="fa fa-search fa-2x"></i></td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{vehicleDetalhe.name}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  <table class=" center table" *ngIf="vehicleDetalhe">
+  <tbody>
+    <tr>
+      <td>Modelo: {{vehicleDetalhe.model}}</td>
+    </tr>
+    <tr>
+      <td>Classe: {{vehicleDetalhe.vehicle_class}}</td>
+    </tr>
+    <tr>
+      <td>Fabricante: {{vehicleDetalhe.manufacturer}}</td>
+    </tr>
+    <tr>
+      <td>Comprimento: {{vehicleDetalhe.length}}</td>
+    </tr>
+    <tr>
+      <td>Créditos Galácticos: {{vehicleDetalhe.cost_in_credits}}</td>
+    </tr>
+    <tr>
+      <td>Pilotos: {{vehicleDetalhe.crew}}</td>  
+    </tr>
+    <tr>
+      <td>Passageiros: {{vehicleDetalhe.passengers}}</td>
+    </tr>
+    <tr>
+      <td>Velocidade Máxima: {{vehicleDetalhe.max_atmosphering_speed}}</td>  
+    </tr>
+    <tr>
+      <td>Capacidade: {{vehicleDetalhe.cargo_capacity}}</td>
+    </tr>
+    <tr>
+      <td>Consumo: {{vehicleDetalhe.consumables}}</td>
+    </tr>
+    <tr>
+      <td>Filmes: {{vehicleDetalhe.films}}</td>
+    </tr>
+    <tr>
+      <td>Url People: {{vehicleDetalhe.pilots}}</td>
+    </tr>
+    <tr>
+      <td>Url: {{vehicleDetalhe.url}}</td>
+    </tr>
+    <tr>
+      <td>Data de Criação: {{vehicleDetalhe.created}}</td>
+    </tr>
+    <tr>
+      <td>Data de Edição: {{vehicleDetalhe.edited}}</td>
+    </tr>
+    
+  </tbody>
+</table>
+  </div>
+</ng-template>

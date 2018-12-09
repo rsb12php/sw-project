@@ -1,0 +1,9 @@
+.btn{
+    margin: 10px;
+}
+
+.btn:hover{
+    background-color: #003364;
+    color: #fff;
+    font-weight: bold; 
+}

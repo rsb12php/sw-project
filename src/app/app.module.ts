@@ -1,10 +1,10 @@
-//pacotes de dev
+// pacotes de dev
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule} from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
-//routas da aplicação
+// routas da aplicação
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -18,15 +18,13 @@ import { PeopleDetalheComponent } from './people/people-detalhe/people-detalhe.c
 import { FilmeDetalheComponent } from './filmes/filme-detalhe/filme-detalhe.component';
 import { VehicleDetalheComponent } from './vehicles/vehicle-detalhe/vehicle-detalhe.component';
 
-//Services
-import { PeopleService } from './people/people.service';
-import { PlanetsService } from './planets/planets.service';
-import { FilmesService } from './filmes/filmes.service';
-import { StarshipsService } from './starships/starships.service';
-import { EspeciesService } from './especies/especies.service';
-import { VehiclesService } from './vehicles/vehicles.service';
-
-
+// Services
+import { PeopleService } from './services/people.service';
+import { PlanetsService } from './services/planets.service';
+import { FilmesService } from './services/filmes.service';
+import { StarshipsService } from './services/starships.service';
+import { EspeciesService } from './services/especies.service';
+import { VehiclesService } from './services/vehicles.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +43,7 @@ import { VehiclesService } from './vehicles/vehicles.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule,
+    HttpClientModule,
     ModalModule.forRoot(),
   ],
   providers: [

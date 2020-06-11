@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Filmes } from './filmes.model';
-import { FilmesService } from './filmes.service';
 import { Router } from '@angular/router';
+import { FilmesService } from '../services/filmes.service';
+import { Filmes } from '../models/filmes.model';
 
 @Component({
   selector: 'app-filmes',
@@ -10,33 +10,33 @@ import { Router } from '@angular/router';
 })
 export class FilmesComponent implements OnInit {
 
-  filme:Filmes
+  filme: Filmes;
 
-  termo: string = ''
+  termo = '';
 
-  perquisa:Filmes
+  perquisa: Filmes;
 
   constructor(
-    private filmesS:FilmesService,
-    private router:Router
+    private filmesS: FilmesService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.filmesS.getData().subscribe((rs)=>{
-    this.filme = rs["results"]
-    })
+    this.filmesS.getData().subscribe((rs) => {
+    this.filme = rs.results;
+    });
   }
 
-  onDetalhe( id:string ){
+  onDetalhe( id: string ) {
     this.router.navigate(['/filmeDetalhe', id]);
   }
 
-  public getPesquisa(pesquisa:Event){
+  public getPesquisa(pesquisa: Event) {
 
-    this.termo = (<HTMLInputElement>pesquisa.target).value
+    this.termo = (pesquisa.target as HTMLInputElement).value;
 
-    this.filmesS.search(this.termo).subscribe((rs)=>{
-      this.perquisa = rs["results"]
-    })
+    this.filmesS.search(this.termo).subscribe((rs) => {
+      this.perquisa = rs.results;
+    });
   }
 }

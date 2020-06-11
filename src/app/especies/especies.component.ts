@@ -1,9 +1,9 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { Especies } from './especies.model';
-import { EspeciesService } from './especies.service';
+import { Especies } from '../models/especies.model';
 import { Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { EspeciesService } from '../services/especies.service';
 
 @Component({
   selector: 'app-especies',
@@ -12,39 +12,39 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 })
 export class EspeciesComponent implements OnInit {
 
-  especie:Especies
+  especie: Especies;
 
-  especieDetalhe:Especies
+  especieDetalhe: Especies;
 
-  termo: string = ''
+  termo = '';
 
-  perquisa:Especies
+  perquisa: Especies;
 
   modalRef: BsModalRef;
 
   constructor(
-    private especiesS:EspeciesService,
+    private especiesS: EspeciesService,
     private modalService: BsModalService,
-    private router:Router
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.especiesS.getData().subscribe((rs)=>{
-    this.especie = rs["results"]
-    })
+    this.especiesS.getData().subscribe((rs) => {
+    this.especie = rs.results;
+    });
   }
 
-  onDetalhe( template: TemplateRef<any> , especie:Especies ){
+  onDetalhe( template: TemplateRef<any> , especie: Especies ) {
     this.modalRef = this.modalService.show(template);
-    this.especieDetalhe = especie
+    this.especieDetalhe = especie;
   }
 
-  public getPesquisa(pesquisa:Event){
+  public getPesquisa(pesquisa: Event) {
 
-    this.termo = (<HTMLInputElement>pesquisa.target).value
+    this.termo = (pesquisa.target as HTMLInputElement).value;
 
-    this.especiesS.search(this.termo).subscribe((rs)=>{
-      this.perquisa = rs["results"]
-    })
+    this.especiesS.search(this.termo).subscribe((rs) => {
+      this.perquisa = rs.results;
+    });
   }
 }

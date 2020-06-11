@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PeopleService } from './people.service';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs'
-import 'rxjs/add/operator/switchMap'
-import 'rxjs/add/operator/debounceTime'
-import { Subject } from 'rxjs';
-import { FormGroup, FormControl } from '@angular/forms';
-
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/debounceTime';
+import { PeopleService } from '../services/people.service';
 @Component({
   selector: 'app-people',
   templateUrl: './people.component.html',
@@ -14,35 +10,35 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class PeopleComponent implements OnInit {
 
-  people:People
+  people: People;
 
-  termo: string = ''
+  termo = '';
 
-  perquisa:People
+  perquisa: People;
 
   constructor(
-    private peopleS:PeopleService,
-    private router:Router
+    private peopleS: PeopleService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.peopleS.getData().subscribe((rs)=>{
-    this.people = rs["results"]
-    })
+    this.peopleS.getData().subscribe((rs) => {
+    this.people = rs.results;
+    });
   }
 
-  onDetalhe( id:string ){
+  onDetalhe( id: string ) {
     this.router.navigate(['/peopleDetalhe', id]);
   }
 
-  public getPesquisa(pesquisa:Event){
+  public getPesquisa(pesquisa: Event) {
 
-    this.termo = (<HTMLInputElement>pesquisa.target).value
+    this.termo = (pesquisa.target as HTMLInputElement).value;
 
-    this.peopleS.search(this.termo).subscribe((rs)=>{
-      console.log(rs)
-      this.perquisa = rs["results"]
-    })
+    this.peopleS.search(this.termo).subscribe((rs) => {
+      console.log(rs);
+      this.perquisa = rs.results;
+    });
   }
-  
+
 }

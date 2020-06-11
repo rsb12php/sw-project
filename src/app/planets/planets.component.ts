@@ -1,8 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { PlanetsService } from './planets.service';
-import { Planets } from './planets.model';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { Planets } from '../models/planets.model';
+import { PlanetsService } from '../services/planets.service';
 
 @Component({
   selector: 'app-planets',
@@ -11,39 +11,39 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 })
 export class PlanetsComponent implements OnInit {
 
-  planet:Planets
+  planet: Planets;
 
-  planetDetalhe:Planets
+  planetDetalhe: Planets;
 
-  termo: string = ''
+  termo = '';
 
-  perquisa:Planets
+  perquisa: Planets;
 
-  modalRef: BsModalRef
+  modalRef: BsModalRef;
 
   constructor(
-    private planetsS:PlanetsService,
+    private planetsS: PlanetsService,
     private modalService: BsModalService
   ) { }
 
   ngOnInit() {
-    this.planetsS.getData().subscribe((rs)=>{
-    this.planet = rs["results"]
-    })
+    this.planetsS.getData().subscribe((rs) => {
+    this.planet = rs.results;
+    });
   }
 
-  onDetalhe( template: TemplateRef<any> , planet:Planets ){
+  onDetalhe( template: TemplateRef<any> , planet: Planets ) {
     this.modalRef = this.modalService.show(template);
-    this.planetDetalhe = planet
+    this.planetDetalhe = planet;
   }
 
-  public getPesquisa(pesquisa:Event){
+  public getPesquisa(pesquisa: Event) {
 
-    this.termo = (<HTMLInputElement>pesquisa.target).value
+    this.termo = (pesquisa.target as HTMLInputElement).value;
 
-    this.planetsS.search(this.termo).subscribe((rs)=>{
-      this.perquisa = rs["results"]
-    })
+    this.planetsS.search(this.termo).subscribe((rs) => {
+      this.perquisa = rs.results;
+    });
   }
-  
+
 }

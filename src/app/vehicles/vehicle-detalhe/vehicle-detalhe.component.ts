@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { VehiclesService } from '../vehicles.service';
-import { Veiculos } from '../vehicles.model';
+import { Veiculos } from '../../models/vehicles.model';
+import { VehiclesService } from 'src/app/services/vehicles.service';
 
 @Component({
   selector: 'app-vehicle-detalhe',
@@ -10,26 +10,26 @@ import { Veiculos } from '../vehicles.model';
 })
 export class VehicleDetalheComponent implements OnInit {
 
-  vehicle:Veiculos
+  vehicle: Veiculos;
 
   constructor(
-    private router:ActivatedRoute,
-    private vehiclesS:VehiclesService
+    private router: ActivatedRoute,
+    private vehiclesS: VehiclesService
   ) {
    }
 
   ngOnInit() {
-    this.router.params.subscribe((id:any)=>{
-      this.vehiclesS.getDataDetail(id).subscribe((rs)=>{
-        this.vehicle = rs
-        this.vehiclesS.getFilms(this.vehicle.films[0]).subscribe((rs)=>{
-          this.vehicle.films = rs.title
-        })
-        
-        
-      })
-    })
-    
+    this.router.params.subscribe((id: any) => {
+      this.vehiclesS.getDataDetail(id).subscribe((rs: any) => {
+        this.vehicle = rs;
+        this.vehiclesS.getFilms(this.vehicle.films[0]).subscribe((rs: any) => {
+          this.vehicle.films = rs.title;
+        });
+
+
+      });
+    });
+
   }
 
 }

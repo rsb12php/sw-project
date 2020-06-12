@@ -2,7 +2,7 @@ class People {
 
     public birth_year: string;
     public eye_color: string;
-    public films: string[];
+    public films: any[];
     public gender: string;
     public hair_color: string;
     public height: string;
@@ -13,8 +13,8 @@ class People {
     public created: string;
     public edited: string;
     public species: string[];
-    public starships: string[];
+    public starships: any[];
     public url: string;
-    public vehicles: string[];
+    public vehicles: any[];
 
 }

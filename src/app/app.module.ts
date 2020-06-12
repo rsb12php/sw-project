@@ -1,6 +1,7 @@
 // pacotes de dev
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
@@ -14,9 +15,6 @@ import { VehiclesComponent } from './vehicles/vehicles.component';
 import { EspeciesComponent } from './especies/especies.component';
 import { PlanetsComponent } from './planets/planets.component';
 import { StarshipsComponent } from './starships/starships.component';
-import { PeopleDetalheComponent } from './people/people-detalhe/people-detalhe.component';
-import { FilmeDetalheComponent } from './filmes/filme-detalhe/filme-detalhe.component';
-import { VehicleDetalheComponent } from './vehicles/vehicle-detalhe/vehicle-detalhe.component';
 
 // Services
 import { PeopleService } from './services/people.service';
@@ -25,6 +23,17 @@ import { FilmesService } from './services/filmes.service';
 import { StarshipsService } from './services/starships.service';
 import { EspeciesService } from './services/especies.service';
 import { VehiclesService } from './services/vehicles.service';
+import { UtilsService } from './services/utils.service';
+
+// Import library module
+import { NgxSpinnerModule } from "ngx-spinner";
+
+//i18n
+import { LOCALE_ID } from "@angular/core";
+import { registerLocaleData } from "@angular/common";
+import localePt from "@angular/common/locales/pt";
+
+registerLocaleData(localePt); 
 
 @NgModule({
   declarations: [
@@ -36,24 +45,27 @@ import { VehiclesService } from './services/vehicles.service';
     EspeciesComponent,
     PlanetsComponent,
     StarshipsComponent,
-    PeopleDetalheComponent,
-    FilmeDetalheComponent,
-    VehicleDetalheComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgxSpinnerModule,
+    BrowserModule, 
+    NgxPaginationModule,
     ModalModule.forRoot(),
   ],
   providers: [
+    {provide:LOCALE_ID,useValue:"pt-BR"},
     PeopleService,
     PlanetsService,
     FilmesService,
     StarshipsService,
     EspeciesService,
-    VehiclesService
+    VehiclesService,
+    UtilsService
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

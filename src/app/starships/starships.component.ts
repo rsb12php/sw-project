@@ -3,6 +3,8 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Startships } from '../models/startships.model';
 import { StarshipsService } from '../services/starships.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { UtilsService } from '../services/utils.service';
 
 @Component({
   selector: 'app-starships',
@@ -11,28 +13,42 @@ import { StarshipsService } from '../services/starships.service';
 })
 export class StarshipsComponent implements OnInit {
 
+  p: number = 1;
+
   starship: Startships;
 
   termo = '';
 
   starshipDetalhe: Startships;
 
-  perquisa: Startships;
+  pesquisa: Startships;
 
   modalRef: BsModalRef;
 
   constructor(
     private starshipsS: StarshipsService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private spinner: NgxSpinnerService,
+    private utils: UtilsService
   ) { }
 
   ngOnInit() {
-    this.starshipsS.getData().subscribe((rs) => {
-    this.starship = rs.results;
+    this.spinner.show();
+    this.starshipsS.getData().subscribe((rs:any) => {
+      this.starship = rs.results;
+      this.spinner.hide();
     });
   }
 
   onDetalhe( template: TemplateRef<any> , starship: Startships ) {
+    this.spinner.show();
+    starship.films.forEach(async(dataShow,i,array)=>{
+      this.utils.getData(dataShow).subscribe((req)=>{
+        array[i] = req;
+      });
+    });
+    this.spinner.hide();
+
     this.modalRef = this.modalService.show(template);
     this.starshipDetalhe = starship;
   }
@@ -41,8 +57,8 @@ export class StarshipsComponent implements OnInit {
 
     this.termo = (pesquisa.target as HTMLInputElement).value;
 
-    this.starshipsS.search(this.termo).subscribe((rs) => {
-      this.perquisa = rs.results;
+    this.starshipsS.search(this.termo).subscribe((rs:any) => {
+      this.pesquisa = rs.results;
     });
   }
 }

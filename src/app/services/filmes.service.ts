@@ -17,7 +17,7 @@ export class FilmesService {
     return this.http.get(this.url);
   }
 
-  getDataDetail(id: string) {
+  getDataDetail(id: any) {
     return this.http.get(`${this.url}${id.id}/`);
   }
 

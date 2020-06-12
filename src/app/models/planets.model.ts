@@ -9,8 +9,8 @@ export class Planets {
     public climate: string;
     public terrain: string;
     public surface_water: string;
-    public residents: string[];
-    public films: string[];
+    public residents: any[];
+    public films: any[];
     public url: string;
     public created: string;
     public edited: string;

@@ -10,8 +10,8 @@ export class Especies {
     skin_colors: string;
     language: string;
     homeworld: string;
-    people: string[];
-    films: string[];
+    people: any[];
+    films: any[];
     url: string;
     created: string;
     edited: string;

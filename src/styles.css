@@ -1,8 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,900;1,300&display=swap');
+
 body{
     background-image:url(assets/background.jpg);
     background-size: cover;
+    font-family: 'Nunito', sans-serif;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-blue-clear{
+    color:#a6f3ff;
+}
+
+.bg-blue-clear {
+    background-color: #00dcff66;
+}
+
+.bg-gray-clear{
+    background-color: #6f919666;
+}
+
+.font-dancing {
+    font-family: 'Dancing Script', cursive;
+}
+
+.font-nunito{
+    font-family: 'Nunito', sans-serif;
 }
 
 table{
     word-break:break-all;
+}
+
+thead{
+    background-color: #47585885 !important;
+    color: white;
+}
+
+tbody{
+    background-color:#ffffffb8;
+    color: black;
+}
+
+.table td, .table th {
+    border-top: 1px solid #8ac1ba !important;
+}
+
+
+/* pagination */
+.ngx-pagination a, .ngx-pagination button {
+    color: #48a9bd !important;
+}
+
+
+.modal-content {
+    background-color: #51aeb3a6 !important;
+}
+
+.modal-header{
+    color: white !important;
+}
+
+
+.position-pesq{
+    position:absolute; 
+    z-index: 999; 
+    top: 10vh;
+}
+
+.close {
+    margin-top: -33px !important;
+    margin-right: -45px !important;
+}
+
+button > span {
+    padding: 10px 20px 10px 20px;
+    background-color: white;
+    /* border-radius: 34px; */
+    color: #347175;
+    border-radius: 5px;
 }

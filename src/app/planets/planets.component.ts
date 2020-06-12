@@ -3,6 +3,8 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Planets } from '../models/planets.model';
 import { PlanetsService } from '../services/planets.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { UtilsService } from '../services/utils.service';
 
 @Component({
   selector: 'app-planets',
@@ -11,28 +13,52 @@ import { PlanetsService } from '../services/planets.service';
 })
 export class PlanetsComponent implements OnInit {
 
+  p: number = 1;
+
   planet: Planets;
 
   planetDetalhe: Planets;
 
   termo = '';
 
-  perquisa: Planets;
+  pesquisa: Planets;
 
   modalRef: BsModalRef;
 
   constructor(
     private planetsS: PlanetsService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private spinner: NgxSpinnerService,
+    private utils: UtilsService
   ) { }
 
   ngOnInit() {
-    this.planetsS.getData().subscribe((rs) => {
-    this.planet = rs.results;
+
+    this.spinner.show();
+
+    this.planetsS.getData().subscribe((rs:any) => {
+      this.planet = rs.results;
+      this.spinner.hide();
+
     });
   }
 
   onDetalhe( template: TemplateRef<any> , planet: Planets ) {
+    this.spinner.show();
+
+    planet.residents.forEach(async(dataShow,i,array)=>{
+      this.utils.getData(dataShow).subscribe((req)=>{
+        array[i] = req;
+      });
+    });
+
+    planet.films.forEach(async(dataShow,i,array)=>{
+      this.utils.getData(dataShow).subscribe((req)=>{
+        array[i] = req;
+      });
+    });
+    this.spinner.hide();
+
     this.modalRef = this.modalService.show(template);
     this.planetDetalhe = planet;
   }
@@ -41,8 +67,8 @@ export class PlanetsComponent implements OnInit {
 
     this.termo = (pesquisa.target as HTMLInputElement).value;
 
-    this.planetsS.search(this.termo).subscribe((rs) => {
-      this.perquisa = rs.results;
+    this.planetsS.search(this.termo).subscribe((rs:any) => {
+      this.pesquisa = rs.results;
     });
   }
 

@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { PeopleService } from '../services/people.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { UtilsService } from '../services/utils.service';
+
 @Component({
   selector: 'app-people',
   templateUrl: './people.component.html',
@@ -10,34 +15,73 @@ import { PeopleService } from '../services/people.service';
 })
 export class PeopleComponent implements OnInit {
 
-  people: People;
+  p: number = 1;
+
+  people: People[];
+
+  peopleDetalhe: People;
 
   termo = '';
 
-  perquisa: People;
+  pesquisa: People;
+
+  modalRef: BsModalRef;
 
   constructor(
     private peopleS: PeopleService,
-    private router: Router
+    private router: Router,
+    private modalService: BsModalService,
+    private spinner: NgxSpinnerService,
+    private utils: UtilsService
   ) { }
 
   ngOnInit() {
-    this.peopleS.getData().subscribe((rs) => {
-    this.people = rs.results;
+    
+    this.spinner.show();
+
+    this.peopleS.getData().subscribe((rs:any) => {
+      this.people = rs.results;
+      this.spinner.hide();
     });
   }
 
-  onDetalhe( id: string ) {
-    this.router.navigate(['/peopleDetalhe', id]);
+  onDetalhe( template: TemplateRef<any> , people: People ) {
+    this.spinner.show();
+    people.films.forEach(async(dataShow,i,array)=>{
+      this.utils.getData(dataShow).subscribe((req)=>{
+        array[i] = req;
+      });
+    });
+
+    people.starships.forEach(async(dataShow,i,array)=>{
+      this.utils.getData(dataShow).subscribe((req)=>{
+        array[i] = req;
+      });
+    });
+
+    people.vehicles.forEach(async(dataShow,i,array)=>{
+      this.utils.getData(dataShow).subscribe((req)=>{
+        array[i] = req;
+      });
+    });
+
+    this.utils.getData(people.homeworld).subscribe((req:any)=>{
+      people.homeworld = req.name;
+    });
+
+    this.spinner.hide();
+    
+    this.modalRef = this.modalService.show(template);
+    this.peopleDetalhe = people;
   }
 
   public getPesquisa(pesquisa: Event) {
 
     this.termo = (pesquisa.target as HTMLInputElement).value;
 
-    this.peopleS.search(this.termo).subscribe((rs) => {
+    this.peopleS.search(this.termo).subscribe((rs:any) => {
       console.log(rs);
-      this.perquisa = rs.results;
+      this.pesquisa = rs.results;
     });
   }
 

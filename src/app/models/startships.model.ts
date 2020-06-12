@@ -13,7 +13,7 @@ export class Startships {
     public MGLT: string;
     public starship_class: string;
     public pilots: string[];
-    public films: string[];
+    public films: any[];
     public created: string;
     public edited: string;
     public url: string;

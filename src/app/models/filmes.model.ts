@@ -12,15 +12,15 @@ export class Filmes {
 
     public release_date: string;
 
-    public species: string[];
+    public species: any[];
 
-    public starships: string[];
+    public starships: any[];
 
-    public vehicles: string[];
+    public vehicles: any[];
 
-    public characters: string[];
+    public characters: any[];
 
-    public planets: string[];
+    public planets: any[];
 
     public url: string;
 

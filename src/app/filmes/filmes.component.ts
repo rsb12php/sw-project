@@ -47,30 +47,35 @@ export class FilmesComponent implements OnInit {
   onDetalhe( template: TemplateRef<any> , filme: Filmes ) {
     this.spinner.show();
     filme.species.forEach(async(dataShow,i,array)=>{
+      dataShow = dataShow.replace('http', 'https')
       this.utils.getData(dataShow).subscribe((req)=>{
         array[i] = req;
       });
     });
 
     filme.starships.forEach(async(dataShow,i,array)=>{
+      dataShow = dataShow.replace('http', 'https')
       this.utils.getData(dataShow).subscribe((req)=>{
         array[i] = req;
       });
     });
 
     filme.vehicles.forEach(async(dataShow,i,array)=>{
+      dataShow = dataShow.replace('http', 'https')
       this.utils.getData(dataShow).subscribe((req)=>{
         array[i] = req;
       });
     });
 
     filme.characters.forEach(async(dataShow,i,array)=>{
+      dataShow = dataShow.replace('http', 'https')
       this.utils.getData(dataShow).subscribe((req)=>{
         array[i] = req;
       });
     });
 
     filme.planets.forEach(async(dataShow,i,array)=>{
+      dataShow = dataShow.replace('http', 'https')
       this.utils.getData(dataShow).subscribe((req)=>{
         array[i] = req;
       });

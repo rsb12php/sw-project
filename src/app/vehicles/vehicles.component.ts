@@ -44,6 +44,7 @@ export class VehiclesComponent implements OnInit {
     this.spinner.show();
 
     vehicle.films.forEach(async(dataShow,i,array)=>{
+      dataShow = dataShow.replace('http', 'https')
       this.utils.getData(dataShow).subscribe((req)=>{
         array[i] = req;
       });

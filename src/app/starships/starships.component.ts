@@ -43,6 +43,7 @@ export class StarshipsComponent implements OnInit {
   onDetalhe( template: TemplateRef<any> , starship: Startships ) {
     this.spinner.show();
     starship.films.forEach(async(dataShow,i,array)=>{
+      dataShow = dataShow.replace('http', 'https')
       this.utils.getData(dataShow).subscribe((req)=>{
         array[i] = req;
       });

@@ -48,23 +48,26 @@ export class PeopleComponent implements OnInit {
   onDetalhe( template: TemplateRef<any> , people: People ) {
     this.spinner.show();
     people.films.forEach(async(dataShow,i,array)=>{
+      dataShow = dataShow.replace('http', 'https')
       this.utils.getData(dataShow).subscribe((req)=>{
         array[i] = req;
       });
     });
 
     people.starships.forEach(async(dataShow,i,array)=>{
+      dataShow = dataShow.replace('http', 'https')
       this.utils.getData(dataShow).subscribe((req)=>{
         array[i] = req;
       });
     });
 
     people.vehicles.forEach(async(dataShow,i,array)=>{
+      dataShow = dataShow.replace('http', 'https')
       this.utils.getData(dataShow).subscribe((req)=>{
         array[i] = req;
       });
     });
-
+    people.homeworld = people.homeworld.replace('http', 'https')
     this.utils.getData(people.homeworld).subscribe((req:any)=>{
       people.homeworld = req.name;
     });

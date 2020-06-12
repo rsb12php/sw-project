@@ -48,12 +48,14 @@ export class EspeciesComponent implements OnInit {
     this.spinner.show();
 
     especie.people.forEach(async(dataShow,i,array)=>{
+      dataShow = dataShow.replace('http', 'https')
       this.utils.getData(dataShow).subscribe((req)=>{
         array[i] = req;
       });
     });
 
     especie.films.forEach(async(dataShow,i,array)=>{
+      dataShow = dataShow.replace('http', 'https')
       this.utils.getData(dataShow).subscribe((req)=>{
         array[i] = req;
       });

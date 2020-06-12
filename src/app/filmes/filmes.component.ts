@@ -14,7 +14,7 @@ import { UtilsService } from '../services/utils.service';
 })
 export class FilmesComponent implements OnInit {
 
-  p: number = 1;
+  p = 1;
 
   filme: Filmes[];
 
@@ -38,7 +38,7 @@ export class FilmesComponent implements OnInit {
 
     this.spinner.show();
 
-    this.filmesS.getData().subscribe((rs:any) => {
+    this.filmesS.getData().subscribe((rs: any) => {
       this.filme = rs.results;
       this.spinner.hide();
     });
@@ -46,42 +46,42 @@ export class FilmesComponent implements OnInit {
 
   onDetalhe( template: TemplateRef<any> , filme: Filmes ) {
     this.spinner.show();
-    filme.species.forEach(async(dataShow,i,array)=>{
-      dataShow = dataShow.replace('http', 'https')
-      this.utils.getData(dataShow).subscribe((req)=>{
+    filme.species.forEach(async(dataShow, i, array) => {
+      dataShow = dataShow.replace('http', 'https');
+      this.utils.getData(dataShow).subscribe((req) => {
         array[i] = req;
       });
     });
 
-    filme.starships.forEach(async(dataShow,i,array)=>{
-      dataShow = dataShow.replace('http', 'https')
-      this.utils.getData(dataShow).subscribe((req)=>{
+    filme.starships.forEach(async(dataShow, i, array) => {
+      dataShow = dataShow.replace('http', 'https');
+      this.utils.getData(dataShow).subscribe((req) => {
         array[i] = req;
       });
     });
 
-    filme.vehicles.forEach(async(dataShow,i,array)=>{
-      dataShow = dataShow.replace('http', 'https')
-      this.utils.getData(dataShow).subscribe((req)=>{
+    filme.vehicles.forEach(async(dataShow, i, array) => {
+      dataShow = dataShow.replace('http', 'https');
+      this.utils.getData(dataShow).subscribe((req) => {
         array[i] = req;
       });
     });
 
-    filme.characters.forEach(async(dataShow,i,array)=>{
-      dataShow = dataShow.replace('http', 'https')
-      this.utils.getData(dataShow).subscribe((req)=>{
+    filme.characters.forEach(async(dataShow, i, array) => {
+      dataShow = dataShow.replace('http', 'https');
+      this.utils.getData(dataShow).subscribe((req) => {
         array[i] = req;
       });
     });
 
-    filme.planets.forEach(async(dataShow,i,array)=>{
-      dataShow = dataShow.replace('http', 'https')
-      this.utils.getData(dataShow).subscribe((req)=>{
+    filme.planets.forEach(async(dataShow, i, array) => {
+      dataShow = dataShow.replace('http', 'https');
+      this.utils.getData(dataShow).subscribe((req) => {
         array[i] = req;
       });
     });
     this.spinner.hide();
-    
+
     this.modalRef = this.modalService.show(template);
     this.filmeDetalhe = filme;
   }
@@ -90,7 +90,7 @@ export class FilmesComponent implements OnInit {
 
     this.termo = (pesquisa.target as HTMLInputElement).value;
 
-    this.filmesS.search(this.termo).subscribe((rs:any) => {
+    this.filmesS.search(this.termo).subscribe((rs: any) => {
       this.pesquisa = rs.results;
     });
   }

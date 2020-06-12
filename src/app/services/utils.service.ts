@@ -8,7 +8,7 @@ export class UtilsService {
 
   constructor( private http: HttpClient ) { }
 
-  getData(url:string){
+  getData(url: string) {
     return this.http.get(url);
   }
 

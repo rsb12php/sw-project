@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/retry';
 import { environment } from '../../environments/environment';
-import { NgxSpinnerService } from "ngx-spinner";
 
 @Injectable({
   providedIn: 'root'

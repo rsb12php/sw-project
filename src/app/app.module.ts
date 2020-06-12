@@ -26,14 +26,14 @@ import { VehiclesService } from './services/vehicles.service';
 import { UtilsService } from './services/utils.service';
 
 // Import library module
-import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxSpinnerModule } from 'ngx-spinner';
 
-//i18n
-import { LOCALE_ID } from "@angular/core";
-import { registerLocaleData } from "@angular/common";
-import localePt from "@angular/common/locales/pt";
+// i18n
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
 
-registerLocaleData(localePt); 
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -51,12 +51,12 @@ registerLocaleData(localePt);
     AppRoutingModule,
     HttpClientModule,
     NgxSpinnerModule,
-    BrowserModule, 
+    BrowserModule,
     NgxPaginationModule,
     ModalModule.forRoot(),
   ],
   providers: [
-    {provide:LOCALE_ID,useValue:"pt-BR"},
+    {provide: LOCALE_ID, useValue: 'pt-BR'},
     PeopleService,
     PlanetsService,
     FilmesService,

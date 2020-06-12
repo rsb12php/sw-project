@@ -13,7 +13,7 @@ import { UtilsService } from '../services/utils.service';
 })
 export class PlanetsComponent implements OnInit {
 
-  p: number = 1;
+  p = 1;
 
   planet: Planets;
 
@@ -36,7 +36,7 @@ export class PlanetsComponent implements OnInit {
 
     this.spinner.show();
 
-    this.planetsS.getData().subscribe((rs:any) => {
+    this.planetsS.getData().subscribe((rs: any) => {
       this.planet = rs.results;
       this.spinner.hide();
 
@@ -46,16 +46,16 @@ export class PlanetsComponent implements OnInit {
   onDetalhe( template: TemplateRef<any> , planet: Planets ) {
     this.spinner.show();
 
-    planet.residents.forEach(async(dataShow,i,array)=>{
-      dataShow = dataShow.replace('http', 'https')
-      this.utils.getData(dataShow).subscribe((req)=>{
+    planet.residents.forEach(async(dataShow, i, array) => {
+      dataShow = dataShow.replace('http', 'https');
+      this.utils.getData(dataShow).subscribe((req) => {
         array[i] = req;
       });
     });
 
-    planet.films.forEach(async(dataShow,i,array)=>{
-      dataShow = dataShow.replace('http', 'https')
-      this.utils.getData(dataShow).subscribe((req)=>{
+    planet.films.forEach(async(dataShow, i, array) => {
+      dataShow = dataShow.replace('http', 'https');
+      this.utils.getData(dataShow).subscribe((req) => {
         array[i] = req;
       });
     });
@@ -69,7 +69,7 @@ export class PlanetsComponent implements OnInit {
 
     this.termo = (pesquisa.target as HTMLInputElement).value;
 
-    this.planetsS.search(this.termo).subscribe((rs:any) => {
+    this.planetsS.search(this.termo).subscribe((rs: any) => {
       this.pesquisa = rs.results;
     });
   }

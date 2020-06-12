@@ -14,7 +14,7 @@ import { UtilsService } from '../services/utils.service';
 })
 export class EspeciesComponent implements OnInit {
 
-  p: number = 1;
+  p = 1;
 
   especie: Especies[];
 
@@ -38,7 +38,7 @@ export class EspeciesComponent implements OnInit {
 
     this.spinner.show();
 
-    this.especiesS.getData().subscribe((rs:any) => {
+    this.especiesS.getData().subscribe((rs: any) => {
       this.especie = rs.results;
       this.spinner.hide();
     });
@@ -47,16 +47,16 @@ export class EspeciesComponent implements OnInit {
   onDetalhe( template: TemplateRef<any> , especie: Especies ) {
     this.spinner.show();
 
-    especie.people.forEach(async(dataShow,i,array)=>{
-      dataShow = dataShow.replace('http', 'https')
-      this.utils.getData(dataShow).subscribe((req)=>{
+    especie.people.forEach(async(dataShow, i, array) => {
+      dataShow = dataShow.replace('http', 'https');
+      this.utils.getData(dataShow).subscribe((req) => {
         array[i] = req;
       });
     });
 
-    especie.films.forEach(async(dataShow,i,array)=>{
-      dataShow = dataShow.replace('http', 'https')
-      this.utils.getData(dataShow).subscribe((req)=>{
+    especie.films.forEach(async(dataShow, i, array) => {
+      dataShow = dataShow.replace('http', 'https');
+      this.utils.getData(dataShow).subscribe((req) => {
         array[i] = req;
       });
     });
@@ -71,7 +71,7 @@ export class EspeciesComponent implements OnInit {
 
     this.termo = (pesquisa.target as HTMLInputElement).value;
 
-    this.especiesS.search(this.termo).subscribe((rs:any) => {
+    this.especiesS.search(this.termo).subscribe((rs: any) => {
       this.pesquisa = rs.results;
     });
   }

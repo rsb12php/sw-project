@@ -13,7 +13,7 @@ import { UtilsService } from '../services/utils.service';
 })
 export class VehiclesComponent implements OnInit {
 
-  p: number = 1;
+  p = 1;
 
   vehicle: Veiculos;
 
@@ -34,7 +34,7 @@ export class VehiclesComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-    this.vehiclesS.getData().subscribe((rs:any) => {
+    this.vehiclesS.getData().subscribe((rs: any) => {
       this.vehicle = rs.results;
       this.spinner.hide();
     });
@@ -43,9 +43,9 @@ export class VehiclesComponent implements OnInit {
   onDetalhe( template: TemplateRef<any> , vehicle: Veiculos ) {
     this.spinner.show();
 
-    vehicle.films.forEach(async(dataShow,i,array)=>{
-      dataShow = dataShow.replace('http', 'https')
-      this.utils.getData(dataShow).subscribe((req)=>{
+    vehicle.films.forEach(async(dataShow, i, array) => {
+      dataShow = dataShow.replace('http', 'https');
+      this.utils.getData(dataShow).subscribe((req) => {
         array[i] = req;
       });
     });
@@ -59,7 +59,7 @@ export class VehiclesComponent implements OnInit {
 
     this.termo = (pesquisa.target as HTMLInputElement).value;
 
-    this.vehiclesS.search(this.termo).subscribe((rs:any) => {
+    this.vehiclesS.search(this.termo).subscribe((rs: any) => {
       this.pesquisa = rs.results;
     });
   }

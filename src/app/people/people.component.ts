@@ -15,7 +15,7 @@ import { UtilsService } from '../services/utils.service';
 })
 export class PeopleComponent implements OnInit {
 
-  p: number = 1;
+  p = 1;
 
   people: People[];
 
@@ -36,10 +36,10 @@ export class PeopleComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
+
     this.spinner.show();
 
-    this.peopleS.getData().subscribe((rs:any) => {
+    this.peopleS.getData().subscribe((rs: any) => {
       this.people = rs.results;
       this.spinner.hide();
     });
@@ -47,33 +47,33 @@ export class PeopleComponent implements OnInit {
 
   onDetalhe( template: TemplateRef<any> , people: People ) {
     this.spinner.show();
-    people.films.forEach(async(dataShow,i,array)=>{
-      dataShow = dataShow.replace('http', 'https')
-      this.utils.getData(dataShow).subscribe((req)=>{
+    people.films.forEach(async(dataShow, i, array) => {
+      dataShow = dataShow.replace('http', 'https');
+      this.utils.getData(dataShow).subscribe((req) => {
         array[i] = req;
       });
     });
 
-    people.starships.forEach(async(dataShow,i,array)=>{
-      dataShow = dataShow.replace('http', 'https')
-      this.utils.getData(dataShow).subscribe((req)=>{
+    people.starships.forEach(async(dataShow, i, array) => {
+      dataShow = dataShow.replace('http', 'https');
+      this.utils.getData(dataShow).subscribe((req) => {
         array[i] = req;
       });
     });
 
-    people.vehicles.forEach(async(dataShow,i,array)=>{
-      dataShow = dataShow.replace('http', 'https')
-      this.utils.getData(dataShow).subscribe((req)=>{
+    people.vehicles.forEach(async(dataShow, i, array) => {
+      dataShow = dataShow.replace('http', 'https');
+      this.utils.getData(dataShow).subscribe((req) => {
         array[i] = req;
       });
     });
-    people.homeworld = people.homeworld.replace('http', 'https')
-    this.utils.getData(people.homeworld).subscribe((req:any)=>{
+    people.homeworld = people.homeworld.replace('http', 'https');
+    this.utils.getData(people.homeworld).subscribe((req: any) => {
       people.homeworld = req.name;
     });
 
     this.spinner.hide();
-    
+
     this.modalRef = this.modalService.show(template);
     this.peopleDetalhe = people;
   }
@@ -82,7 +82,7 @@ export class PeopleComponent implements OnInit {
 
     this.termo = (pesquisa.target as HTMLInputElement).value;
 
-    this.peopleS.search(this.termo).subscribe((rs:any) => {
+    this.peopleS.search(this.termo).subscribe((rs: any) => {
       console.log(rs);
       this.pesquisa = rs.results;
     });

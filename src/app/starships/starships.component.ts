@@ -13,7 +13,7 @@ import { UtilsService } from '../services/utils.service';
 })
 export class StarshipsComponent implements OnInit {
 
-  p: number = 1;
+  p = 1;
 
   starship: Startships;
 
@@ -34,7 +34,7 @@ export class StarshipsComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-    this.starshipsS.getData().subscribe((rs:any) => {
+    this.starshipsS.getData().subscribe((rs: any) => {
       this.starship = rs.results;
       this.spinner.hide();
     });
@@ -42,9 +42,9 @@ export class StarshipsComponent implements OnInit {
 
   onDetalhe( template: TemplateRef<any> , starship: Startships ) {
     this.spinner.show();
-    starship.films.forEach(async(dataShow,i,array)=>{
-      dataShow = dataShow.replace('http', 'https')
-      this.utils.getData(dataShow).subscribe((req)=>{
+    starship.films.forEach(async(dataShow, i, array) => {
+      dataShow = dataShow.replace('http', 'https');
+      this.utils.getData(dataShow).subscribe((req) => {
         array[i] = req;
       });
     });
@@ -58,7 +58,7 @@ export class StarshipsComponent implements OnInit {
 
     this.termo = (pesquisa.target as HTMLInputElement).value;
 
-    this.starshipsS.search(this.termo).subscribe((rs:any) => {
+    this.starshipsS.search(this.termo).subscribe((rs: any) => {
       this.pesquisa = rs.results;
     });
   }
